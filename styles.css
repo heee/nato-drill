@@ -182,8 +182,16 @@ button:focus-visible { outline: 2px solid var(--khaki); outline-offset: 3px; }
   overflow: hidden;
   text-align: left;
 }
-.front { background: var(--khaki); color: var(--ground-deep); }
-.back  { background: var(--olive); color: var(--sand); transform: rotateY(180deg); }
+/* Very soft light-to-shade gradients, centered on the base colors. */
+.front {
+  background: var(--khaki) linear-gradient(160deg, #D6C89B 0%, var(--khaki) 50%, #C3B383 100%);
+  color: var(--ground-deep);
+}
+.back {
+  background: var(--olive) linear-gradient(160deg, #545E37 0%, var(--olive) 50%, #434C2A 100%);
+  color: var(--sand);
+  transform: rotateY(180deg);
+}
 
 .face-row {
   display: flex;
