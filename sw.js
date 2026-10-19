@@ -1,5 +1,5 @@
 // Bump CACHE on every deploy so clients pick up the new files.
-const CACHE = 'nato-drill-v1';
+const CACHE = 'nato-drill-v2';
 
 const ASSETS = [
   './',

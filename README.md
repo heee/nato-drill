@@ -7,10 +7,12 @@ A single-purpose iPhone web app (PWA) for drilling the NATO phonetic alphabet wi
 | Gesture | Action |
 |---|---|
 | Tap | Flip the card |
-| Swipe up | Got it (correct) |
-| Swipe down | Missed |
-| Swipe right | Skip |
-| Swipe left | Back to the previous card |
+| Swipe up | Got it (correct): the card gives a quick nod, then flies up and fades out |
+| Swipe down | Missed: the card shakes its head, then drops away and fades out |
+| Swipe right | Skip: carousel slide |
+| Swipe left | Back to the previous card: carousel slide |
+
+The nod (a 1.06× scale pop, 140ms) and head-shake (18 → 12 → 6px, 200ms) are a deliberate change from the original spec, which called for fly-off only. Each is followed by a 240ms fly-off with fade; the next card rises as the exit starts. With *Reduce Motion* turned on, both are replaced by a 150ms cross-fade.
 
 Tap the **MASTERED** bar (top right) to open the Mission Log: per-letter mastery, export/import of progress, offline status and reset.
 

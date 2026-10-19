@@ -317,6 +317,63 @@
     return anim.finished.catch(() => {});
   }
 
+  const EXIT_MS = 240;
+
+  // Got it: a quick nod (scale pop). Missed: a head-shake. Then fly off vertically while fading out.
+  // Every keyframe uses the same translate/rotate/scale list so the browser interpolates smoothly.
+  function gradeFrames(dir, drag) {
+    const x = drag ? drag.x : 0;
+    const y = drag ? drag.y : 0;
+    const r = x * 0.05;
+    const at = (dx, rot, scale, opacity, offset, easing) => ({
+      transform: `translate(${x + dx}px, ${y}px) rotate(${r + rot}deg) scale(${scale})`,
+      opacity,
+      offset,
+      easing,
+    });
+
+    const sign = dir === 'up' ? -1 : 1;
+    const tilt = (x ? Math.sign(x) : -sign) * 4;
+    const exit = {
+      transform: `translate(${x}px, ${y + sign * window.innerHeight * 1.2}px) rotate(${r + tilt}deg) scale(1)`,
+      opacity: 0,
+      offset: 1,
+    };
+
+    if (dir === 'up') {
+      const feedback = 140;
+      const total = feedback + EXIT_MS;
+      const t = (ms) => ms / total;
+      return {
+        feedback,
+        duration: total,
+        keyframes: [
+          at(0, 0, 1, 1, 0, 'cubic-bezier(.2, .7, .3, 1)'),
+          at(0, 0, 1.06, 1, t(60), 'cubic-bezier(.4, 0, .4, 1)'),
+          at(0, 0, 1, 1, t(feedback), 'cubic-bezier(.4, 0, .9, .6)'),
+          exit,
+        ],
+      };
+    }
+
+    const feedback = 200;
+    const total = feedback + EXIT_MS;
+    const t = (ms) => ms / total;
+    const ease = 'ease-in-out';
+    return {
+      feedback,
+      duration: total,
+      keyframes: [
+        at(0, 0, 1, 1, 0, ease),
+        at(18, 1.5, 1, 1, t(40), ease),
+        at(-12, -1, 1, 1, t(90), ease),
+        at(6, 0.5, 1, 1, t(140), ease),
+        at(0, 0, 1, 1, t(feedback), 'cubic-bezier(.4, 0, .9, .6)'),
+        exit,
+      ],
+    };
+  }
+
   function animateSwap(old, next, dir, drag) {
     const from = dragTransform(drag);
 
@@ -330,15 +387,12 @@
     }
 
     if (dir === 'up' || dir === 'down') {
-      const sign = dir === 'up' ? -1 : 1;
-      const x = drag ? drag.x : 0;
-      const tilt = (x ? Math.sign(x) : -sign) * 4;
-      const to = `translate(${x}px, ${sign * window.innerHeight * 1.2}px) rotate(${tilt}deg)`;
+      const frames = gradeFrames(dir, drag);
       return Promise.all([
-        finished(old.animate([{ transform: from }, { transform: to }],
-          { duration: 280, easing: 'cubic-bezier(.4, 0, .9, .6)', fill: 'forwards' })),
+        finished(old.animate(frames.keyframes, { duration: frames.duration, fill: 'forwards' })),
+        // The next card starts rising when the exit starts, after the nod / shake.
         finished(next.animate([{ transform: 'scale(.94)', opacity: 0.6 }, { transform: 'none', opacity: 1 }],
-          { duration: 260, easing: 'cubic-bezier(.2, .7, .2, 1)', fill: 'backwards' })),
+          { duration: 260, delay: frames.feedback, easing: 'cubic-bezier(.2, .7, .2, 1)', fill: 'backwards' })),
       ]);
     }
 
