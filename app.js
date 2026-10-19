@@ -164,6 +164,7 @@
   const sheetPanel = $('sheetPanel');
   const sheetHead = $('sheetHead');
   const sheetCount = $('sheetCount');
+  const sheetTrained = $('sheetTrained');
   const sheetFill = $('sheetFill');
   const grid = $('grid');
   const statusEl = $('status');
@@ -558,6 +559,9 @@
   function renderSheet() {
     const m = masteredCount();
     sheetCount.textContent = `${m} / ${LETTERS.length} MASTERED`;
+    // Every graded card (got it + missed); skips don't count.
+    const trained = LETTERS.reduce((n, l) => n + state.cards[l].correct + state.cards[l].missed, 0);
+    sheetTrained.textContent = `${trained} TRAINED`;
     sheetFill.style.transform = `scaleX(${m / LETTERS.length})`;
     LETTERS.forEach((l, i) => {
       const level = state.cards[l].level;

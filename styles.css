@@ -304,6 +304,9 @@ button:focus-visible { outline: 2px solid var(--khaki); outline-offset: 3px; }
   color: var(--sand);
 }
 .sheet-count {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
   font: 600 12px/1 var(--mono);
   letter-spacing: 2px;
   margin: 6px 0 10px;
