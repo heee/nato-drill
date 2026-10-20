@@ -37,6 +37,71 @@
     INFO[letter] = { letter, word, pron, num: String(i + 1).padStart(2, '0') };
   });
 
+  // ---------- Practice samples (spell these in NATO code) ----------
+
+  const WORDS = {
+    A: ['CAT', 'PLANE', 'RADAR', 'MAP', 'BASE', 'ALARM', 'CANYON', 'HANGAR', 'SALT', 'TRACK', 'ANCHOR', 'PARADE', 'APPLE', 'BANANA', 'CASTLE', 'GALAXY'],
+    B: ['BOX', 'CABIN', 'BRIDGE', 'ORBIT', 'BUNKER', 'TABLE', 'BEACON', 'CLIMB', 'BLUE', 'HARBOR', 'RIBBON', 'BOLT', 'BREAD', 'BUBBLE', 'ROBIN', 'BISON'],
+    C: ['CODE', 'CLOCK', 'ROCKET', 'DECK', 'CARGO', 'CLOUD', 'CABLE', 'PACK', 'CIRCLE', 'COMPASS', 'SCOUT', 'CAMP', 'COFFEE', 'CACTUS', 'MAGIC', 'CRANE'],
+    D: ['DOG', 'RADIO', 'DRONE', 'DESK', 'ROAD', 'MEDAL', 'DUNE', 'SHADOW', 'DRILL', 'GUARD', 'DOCK', 'FIELD', 'DIAMOND', 'CANDLE', 'DRAGON', 'WIND'],
+    E: ['EAGLE', 'ENGINE', 'RIVER', 'ZERO', 'SEVEN', 'METER', 'FENCE', 'HELMET', 'WEST', 'EXIT', 'SECRET', 'TREE', 'ELEVEN', 'EMBER', 'PENGUIN', 'GREEN'],
+    F: ['FLAG', 'FUEL', 'FALCON', 'RAFT', 'FOG', 'OFFICE', 'FLIGHT', 'LEAF', 'FROST', 'CLIFF', 'FORT', 'FERRY', 'GIRAFFE', 'FIFTY', 'WAFFLE', 'FOREST'],
+    G: ['GATE', 'GEAR', 'SIGNAL', 'GLIDER', 'BADGE', 'GRID', 'TIGER', 'GREEN', 'RANGE', 'LOG', 'GOAL', 'GIGGLE', 'GARAGE', 'BRIDGE', 'GUITAR', 'EGG'],
+    H: ['HAWK', 'HILL', 'SHIP', 'HATCH', 'NORTH', 'HOUSE', 'CHART', 'SHORE', 'THUNDER', 'HIGHWAY', 'HEIGHT', 'PHONE', 'HONEY', 'WHALE', 'ORCHID', 'HAMMER'],
+    I: ['IRON', 'PILOT', 'VISOR', 'ISLAND', 'KIT', 'MISSION', 'INK', 'LIGHT', 'RIDGE', 'WING', 'IGLOO', 'TAXI', 'BISCUIT', 'INDIGO', 'PICNIC', 'LIMIT'],
+    J: ['JET', 'JUMP', 'JUNGLE', 'JACKET', 'JEEP', 'JOURNEY', 'MAJOR', 'JOKER', 'JAM', 'JADE', 'PROJECT', 'JOIN', 'JAZZ', 'JIGSAW', 'BANJO', 'PAJAMA'],
+    K: ['KITE', 'KNOT', 'TRUCK', 'DARK', 'KEY', 'TANK', 'SKY', 'KAYAK', 'PARK', 'BLACK', 'KETTLE', 'KIWI', 'KNEE', 'BOOK', 'SNAKE', 'KINGDOM'],
+    L: ['LAKE', 'LASER', 'LEVEL', 'LOCK', 'PATROL', 'LADDER', 'CANAL', 'LEMON', 'SALUTE', 'LOOP', 'LLAMA', 'PENCIL', 'LILAC', 'TUNNEL', 'LOYAL', 'BALLOON'],
+    M: ['METER', 'MOTOR', 'MARCH', 'STORM', 'MOON', 'MAGNET', 'SUMMIT', 'MIRROR', 'MAST', 'MAMMOTH', 'MUSEUM', 'LEMON', 'MIDNIGHT', 'COMET', 'HAMMOCK', 'MAPLE'],
+    N: ['NIGHT', 'BANNER', 'NET', 'NAVY', 'LANTERN', 'NOON', 'NEST', 'CANYON', 'NINE', 'BANANA', 'NEPTUNE', 'ONION', 'NICKEL', 'PLANET', 'NOVEL', 'TENNIS'],
+    O: ['OCEAN', 'OPEN', 'ROBOT', 'SONAR', 'OAK', 'OPTIC', 'HONOR', 'BOOT', 'OASIS', 'OCTOPUS', 'ORANGE', 'OBOE', 'TORPEDO', 'COCOA', 'OXYGEN', 'MONSOON'],
+    P: ['PILOT', 'PIPER', 'SPARK', 'PORT', 'PEPPER', 'SPY', 'PUPPET', 'PAPER', 'PARROT', 'PUMPKIN', 'APRON', 'TOPAZ', 'PEBBLE', 'PRISM', 'HIPPO', 'POPCORN'],
+    Q: ['QUIET', 'QUEEN', 'QUICK', 'QUOTA', 'QUIZ', 'SQUAD', 'QUAKE', 'EQUIP', 'QUILT', 'QUEST', 'AQUA', 'TORQUE', 'SQUID', 'IQ', 'UNIQUE', 'QUARTZ'],
+    R: ['RADAR', 'ROVER', 'ROCKET', 'MIRROR', 'RAIN', 'ROPE', 'ARMOR', 'RECORD', 'RAZOR', 'ERROR', 'RIBBON', 'MARKER', 'RUBY', 'CORRAL', 'ROBIN', 'RHYTHM'],
+    S: ['SONAR', 'STAR', 'STORM', 'SCOUT', 'SEAL', 'SUNSET', 'SASSY', 'STRESS', 'SPICE', 'SAILS', 'MISSION', 'SALSA', 'SEASON', 'GLASS', 'SUSHI', 'SYSTEM'],
+    T: ['TANK', 'TOWER', 'TENT', 'TARGET', 'STATION', 'TOAST', 'TICKET', 'TOTAL', 'TRUMPET', 'TATTOO', 'TOMATO', 'TURTLE', 'TITAN', 'THIRTY', 'STREET', 'TACTIC'],
+    U: ['UNIT', 'UPPER', 'RUNWAY', 'URBAN', 'UNDER', 'CURRENT', 'UMBRELLA', 'BUGLE', 'CRUISE', 'TURBO', 'TUNDRA', 'UTOPIA', 'HUMMUS', 'UKULELE', 'CACTUS', 'NUMBER'],
+    V: ['VALVE', 'VECTOR', 'VAN', 'VOICE', 'VALLEY', 'SEVEN', 'VIEW', 'VOLT', 'VELVET', 'VIOLIN', 'OVEN', 'VIVID', 'VOLCANO', 'GLOVE', 'VANILLA', 'VOYAGE'],
+    W: ['WIND', 'WATER', 'WAVE', 'SNOW', 'ARROW', 'WATCH', 'SWITCH', 'WALRUS', 'WINDOW', 'WILLOW', 'TWELVE', 'SWAMP', 'WIGWAM', 'OWL', 'SWORD', 'WALNUT'],
+    X: ['BOX', 'AXE', 'FOX', 'EXIT', 'TAXI', 'MIXER', 'PIXEL', 'SIX', 'XENON', 'EXTRA', 'WAX', 'RELAX', 'OXYGEN', 'TEXAS', 'SPHINX', 'LUXURY'],
+    Y: ['YARD', 'YELLOW', 'NAVY', 'YACHT', 'ARMY', 'YEAR', 'YOUTH', 'DAY', 'YOGURT', 'YAK', 'PYRAMID', 'MYSTERY', 'BICYCLE', 'YOYO', 'JOURNEY', 'OYSTER'],
+    Z: ['ZONE', 'ZIP', 'ZOOM', 'BUZZ', 'PRIZE', 'HAZE', 'BLAZE', 'ZEBRA', 'PUZZLE', 'OZONE', 'BREEZE', 'PIZZA', 'ZIGZAG', 'WIZARD', 'BRONZE', 'ZENITH'],
+  };
+
+  const ALPHA = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; // no I or O in codes, like real booking refs
+  const DIGITS = '23456789';
+  const rnd = (s) => s[Math.floor(Math.random() * s.length)];
+
+  // Code formats: L = letter, D = digit, anything else is literal.
+  const CODE_FORMATS = [
+    'LLLLLL',    // booking reference
+    'LDLLDL',    // booking reference
+    'G-LLLL',    // UK aircraft registration
+    'LL DDD',    // flight number
+    'LLL DDDD',  // number plate
+    'DDLL',      // grid square
+    'LDD-LLD',   // serial number
+  ];
+
+  function makeCode(letter) {
+    const format = rnd(CODE_FORMATS);
+    const chars = [...format].map((f) => (f === 'L' ? rnd(ALPHA) : f === 'D' ? rnd(DIGITS) : f));
+    const slots = [...format].map((f, i) => (f === 'L' ? i : -1)).filter((i) => i >= 0);
+    chars[rnd(slots)] = letter;
+    return chars.join('');
+  }
+
+  const lastSample = {};
+  // Mostly real words, sometimes an alphanumeric code. Never the same sample twice in a row for a letter.
+  function pickSample(letter) {
+    let sample;
+    do {
+      sample = Math.random() < 0.65 ? rnd(WORDS[letter]) : makeCode(letter);
+    } while (sample === lastSample[letter]);
+    lastSample[letter] = sample;
+    return sample;
+  }
+
   // ---------- Learning logic ----------
 
   const STORAGE_KEY = 'natoDrill.v1';
@@ -155,6 +220,7 @@
   const $ = (id) => document.getElementById(id);
   const main = $('main');
   const stage = $('stage');
+  const practice = $('practice');
   const cardLabel = $('cardLabel');
   const cardSegs = Array.from($('cardSegs').children);
   const overallBtn = $('overallBtn');
@@ -233,7 +299,17 @@
     }
   }
 
+  // Subtle practice sample under the card, with the card's letter highlighted.
+  function renderPractice(letter) {
+    const sample = pickSample(letter);
+    practice.textContent = '';
+    for (const ch of sample) practice.append(ch === letter ? el('b', '', ch) : document.createTextNode(ch));
+    practice.setAttribute('aria-label', `Practice: spell ${sample}`);
+    if (!reducedMotion.matches) practice.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 220, easing: 'ease-out' });
+  }
+
   function replaceCard() {
+    renderPractice(state.current);
     const next = makeCard(state.current);
     if (cardEl) cardEl.remove();
     stage.append(next);
@@ -297,6 +373,7 @@
     renderTop(dir === 'up' || dir === 'down' ? graded : state.current);
     if (sheetOpen) renderSheet();
 
+    renderPractice(state.current);
     const next = makeCard(state.current);
     stage.insertBefore(next, old); // underneath the outgoing card
     fitWord(next);

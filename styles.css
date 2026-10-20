@@ -27,6 +27,7 @@
   --olive: #4B5530;
   --sand: #E3D6A8;
   --dim: #59613F;
+  --muted: #A29C78; /* subtle text, still ~4.5:1 on --ground */
 
   --display: 'Black Ops One', Impact, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
@@ -145,6 +146,22 @@ button:focus-visible { outline: 2px solid var(--khaki); outline-offset: 3px; }
   display: grid;
   place-items: center;
 }
+
+/* Practice word: pinned to the bottom, out of the layout flow so the card never moves.
+   Comes before .stage in the DOM so flying cards pass over it. */
+.practice {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 18px);
+  text-align: center;
+  font: 600 15px/1 var(--mono);
+  letter-spacing: 4px;
+  color: var(--muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.practice b { font-weight: 600; color: var(--khaki); }
 
 /* ---------- Card ---------- */
 

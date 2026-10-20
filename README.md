@@ -14,6 +14,8 @@ A single-purpose iPhone web app (PWA) for drilling the NATO phonetic alphabet wi
 
 The nod (a 1.06× scale pop, 140ms) and head-shake (18 → 12 → 6px, 200ms) are a deliberate change from the original spec, which called for fly-off only. Each is followed by a 240ms fly-off with fade; the next card rises as the exit starts. With *Reduce Motion* turned on, both are replaced by a 150ms cross-fade.
 
+Under each card, a subtle practice sample shows a word or code containing that letter (highlighted), for spelling out loud in NATO code. It's random each time: about two-thirds are everyday words (16 per letter), the rest are generated codes such as booking references, aircraft registrations, flight numbers and number plates.
+
 Tap the **MASTERED** bar (top right) to open the Mission Log: per-letter mastery, export/import of progress, offline status and reset.
 
 Keyboard (desktop): Space flips, ↑ correct, ↓ missed, → skip, ← back.
